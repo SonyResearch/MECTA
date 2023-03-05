@@ -1,0 +1,33 @@
+name: CTA IN
+project: MECTA_release
+program: cta_eval.py
+command:
+- ${interpreter}
+- ${program}
+- --data=IN
+- --eval_mode=continual
+- --test_corrupt=std
+#- --iters=500  # use -1 to use all
+- --lr=1e-4  # smaller for small batches
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: avg acc
+parameters:
+  model:
+    values:
+     # - rb_resnet50
+     - resnet50
+  alg:
+    values:
+    - src
+    - bn
+    - tent
+    - eata
+  batch_size:
+    values:
+#      - 8  # for EATA/Tent, with memory > BN-bs=64, but < BN-bs=128
+      - 26 # for tent/EATA + GC (407Mb cache)
+#      - 64  # for bn
+#      - 128  # for BN+local bn, best acc (bound on cache)

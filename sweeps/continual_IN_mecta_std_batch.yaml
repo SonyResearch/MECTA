@@ -1,0 +1,45 @@
+name: CTA IN MECTA
+project: MECTA_release
+program: cta_eval.py
+command:
+- ${interpreter}
+- ${program}
+- --data=IN
+- --eval_mode=continual
+- --test_corrupt=std
+# - --bn_dist_metric=simple
+# - --lr=2.5e-4  # for standard resnet50
+- --lr=1e-4  # for smaller batch, e.g., <=32
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: avg acc
+parameters:
+  model:
+    values:
+    #  - rb_resnet50
+     - resnet50
+  alg:
+    values:
+     - tent
+     - eata
+  batch_size:
+    values:
+      # - 32
+      - 64
+#   ==============
+  # MECTA param
+  accum_bn:
+    values:
+      - True
+  forget_gate:
+    values:
+      - True
+  beta_thre:
+    values:
+      - 0.00125
+      # - 0.000625
+  prune_q:
+    values:
+      - 0.7

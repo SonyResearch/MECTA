@@ -1,0 +1,39 @@
+name: CTA IN MECTA ablate gate
+project: MECTA_release
+program: cta_eval.py
+command:
+- ${interpreter}
+- ${program}
+- --data=IN
+- --eval_mode=continual
+- --test_corrupt=std
+# - --bn_dist_metric=simple
+- --lr=1e-4  # for smaller batch, e.g., <=32
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: avg acc
+parameters:
+  model:
+    values:
+     - rb_resnet50
+  alg:
+    values:
+     - bn
+     - tent
+     - eata
+  batch_size:
+    values:
+      # - 30
+      - 16
+#   ==============
+  # MECTA param
+  accum_bn:
+    values:
+      - True
+      # - False
+  forget_gate:
+    values:
+      - True
+      - False

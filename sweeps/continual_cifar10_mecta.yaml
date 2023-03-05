@@ -1,0 +1,59 @@
+name: CTA CIFAR10 MECTA
+project: MECTA_release
+program: cta_eval.py
+command:
+- ${interpreter}
+- ${program}
+- --data=cifar10
+- --eval_mode=continual
+- --test_corrupt=std
+- --bn_dist_metric=skl
+- --lr=0.0025
+- ${args}
+method: grid
+metric:
+  goal: maximize
+  name: avg acc
+parameters:
+  model:
+    values:
+#      - resnet18
+#      - rb_resnet18
+      - rb_ResNeXt29_32x4d
+  alg:
+    values:
+#      - src
+#      - bn
+      - tent
+#      - eta
+      - eata
+#      - arm
+  batch_size:
+    values:
+    #  - 8   # for tent and EATA.
+     - 16  # for tent&EATA + MECTA
+    #  - 31  # for MECTA
+#      - 64  # for BN
+#      - 128  # for BN
+  # MECTA param
+  accum_bn:
+    values:
+      - True
+#      - False
+  forget_gate:
+    values:
+      - True
+#      - False
+#  iters:
+#    values:
+##      - 500
+#      - -1
+  beta_thre:
+    values:
+#      - 0.005
+      # - 0.0025
+     - 0.00125
+  prune_q:
+    values:
+#      - 0.5
+      - 0.7

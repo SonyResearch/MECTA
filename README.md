@@ -10,7 +10,7 @@ Continual Test-time Adaptation (CTA) is a promising art to secure accuracy gains
 
 ## Citation
 
-If you plan to use the codes in your research, please cite us using:
+If you plan to use our code in your research, please cite below:
 ```bibtex
 @inproceedings{hong2023mecta,
   title={MECTA: Memory-Economic Continual Test-time Adaptation},
@@ -87,6 +87,6 @@ Sweep files:
 
 ## Contact
 
-If you have any questions regarding the code, please feel free to contact the authors.
+If you have any questions regarding the code, please feel free to contact Junyuan Hong (hongju12@msu.edu) or Lingjuan Lyu (Lingjuan.Lv@sony.com).
 
 ###### Copyright 2023, Sony AI, Sony Corporation of America, All rights reserved.

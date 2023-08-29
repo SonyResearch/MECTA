@@ -21,7 +21,7 @@ dtype_memory_size_dict = {
     torch.int32: 32/8,
     torch.int: 32/8,
     torch.int16: 16/8,
-    torch.short: 16/6,
+    torch.short: 16/8,
     torch.uint8: 8/8,
     torch.int8: 8/8,
 }
